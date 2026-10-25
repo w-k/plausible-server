@@ -1,0 +1,15 @@
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  plausible:
+    ports:
+      - 127.0.0.1:8000:8000
+    logging: *logging
+  plausible_db:
+    logging: *logging
+  plausible_events_db:
+    logging: *logging

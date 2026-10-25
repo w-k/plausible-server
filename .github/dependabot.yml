@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: docker-compose
+    directory: "/"
+    schedule:
+      interval: daily
+    labels:
+      - image-update
+    ignore:
+      # Database major upgrades need a manual migration; follow the
+      # Plausible community-edition release notes instead.
+      - dependency-name: postgres
+        update-types: ["version-update:semver-major"]
+      - dependency-name: clickhouse/clickhouse-server
+        update-types: ["version-update:semver-major"]
